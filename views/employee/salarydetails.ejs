@@ -1,0 +1,159 @@
+<style>
+    .empDetails{
+        margin-top: 70px;
+    }
+</style>
+<% layout("/layouts/boilerpalte") %>
+<body>
+    <head>
+        <link rel="stylesheet" href="/css/admin.css">
+    </head>
+    <body>
+        <div class="content ">
+            <div class="dashboard">
+                <div class="dashText">
+                    <p>Payroll Management System</p>
+                </div>
+                <div class="admin">
+                    <div class="admin-info">
+                        <img src="https://icons.iconarchive.com/icons/aha-soft/free-large-boss/512/Admin-icon.png">
+                        <div class="admin-status">
+                            <h6>Admin</h6>
+                            <p><i class="fa-solid fa-globe online"></i>Online</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="notification">
+                    <p>Notifications</p>
+                </div>
+                <div class="adminWork">
+                    <div class="adminres ">
+                        <a>
+                            <i class="fa-solid fa-clipboard-user"></i>
+                            Attendence
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a href="http://localhost:8080/employees">
+                            <i class="fa-solid fa-user"></i>
+                            Employees Section
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a>
+                            <i class="fa-solid fa-money-bill"></i>
+                            Salary Slips
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a href="http://localhost:8080/admin/leaves">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            Leave Management
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a href="http://localhost:8080/admin/payheads">
+                            <i class="fa-brands fa-gratipay"></i>
+                            Pay Heads
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a>
+                            <i class="fa-solid fa-clipboard-list"></i>
+                            List Holidays
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav">
+                <div class="menulogo" onclick="toggleDashboard()">
+                    <i class="fa-solid fa-bars menu-bar"></i>
+                </div>
+                <div class="logout offset-10">
+                    <button class="btn btn-primary logout">Log out</button>
+                </div>
+            </div>
+            <div class="demo"></div>
+        </div>
+    </body>
+
+    <div class="empDetails">
+        <table class="table table-hover leavetable">
+            <tbody>
+                <tr>
+                    <td>Employee Id</td>
+                    <td><%=employee._id%></td>
+                    <td>Bank Name</td>
+                    <td><%=employee.bankName%> %></td>
+                </tr>
+                <tr>
+                    <td>Employee Name</td>
+                    <td><%=employee.firstname%>&nbsp;<%=employee.lastname%>&nbsp;</td>
+                    <td>Bank Account</td>
+                    <td><%=employee.bankacno%></td>
+                </tr>
+                <tr>
+                    <td>Designation</td>
+                    <td><%=employee.designation%></td>
+                    <td>IFSC Code</td>
+                    <td><%=employee.ifsccode%></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td><%=employee.gender%></td>
+                    <td><%=employee.identification %></td>
+                    <td><%=employee.idnumber%></td>
+                </tr>
+                <tr>
+                    <td>Location</td>
+                    <td><%=employee.city%>&nbsp;<%=employee.state%></td>
+                    <td>Country</td>
+                    <td><%=employee.country%></td>
+                </tr>
+                <tr>
+                    <td>Department</td>
+                    <td><%=employee.department%></td>
+                    <td>Payable/Working Days</td>
+                    <td><%=newReport.totalwd%>Days</td>
+                </tr>
+                <tr>
+                    <td>Date of Joining</td>
+                    <td><%=`${employee.doj.getDate()}/${employee.doj.getMonth()+1}/${employee.doj.getFullYear()}` %></td>
+                    <td>leaves taken</td>
+                    <td><%=newReport.leaves%></td>
+                </tr>
+                
+            </tbody>
+
+
+        </table>
+
+        <table class="table table-hover leavetable">
+            <tbody>
+                <tr>
+                    <td><b>Earnings</b></td>
+                    <td><b>Amount(Rs.)</b></td>
+                    <td><b>Deductions</b></td>
+                    <td><b>Amount(Rs.)</b></td>
+                </tr>
+                <tr>
+                    <td><b>Total Earnings</b></td>
+                    <td><b><%=newReport.totbasic%></b></td>
+                    <td><b>Total Deductions</b></td>
+                    <td><b><%=newReport.totded %></b></td>
+                </tr>
+                <tr>
+                    <td><h5>Net Salary Payable : <%=newReport.netSalary%></h5></td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <a href="http://localhost:8080/employee/<%=employee._id%>/salarySlips"> <button class="btn btn-primary">Generate Salary Slip</button> </a>
+        </div>
+        
+    </div>
+
+
+
+
+</body>

@@ -1,0 +1,40 @@
+
+    .nav_bar{
+        height: 60px;
+        background-color:aqua;
+        color: white;
+        display: flex;
+        align-items: center;
+    }
+    .emp_img{
+        height: 50px;
+        width: 50px;
+        margin: 15px;
+
+    }
+    .emp_img{
+        height: 40px;
+        width: 40px;
+    }
+    .emp_info{
+        display: flex;
+    }
+    .emp_details{
+        margin:10px;
+        padding: 0px;
+    }
+    .nav-links{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    .nav-links div{
+        margin: 30px;
+    }
+    .nav-logout button{
+       margin-left: 700px;
+    }
+    a{
+        text-decoration: none !important;
+    }

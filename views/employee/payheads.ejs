@@ -1,0 +1,130 @@
+<style>
+    body{
+        
+        margin: 90px;
+    }
+</style>
+
+<% layout("/layouts/boilerpalte") %>
+<body>
+    <head>
+        <link rel="stylesheet" href="/css/admin.css">
+    </head>
+    <body>
+        <div class="content ">
+            <div class="dashboard">
+                <div class="dashText">
+                    <p>Payroll Management System</p>
+                </div>
+                <div class="admin">
+                    <div class="admin-info">
+                        <img src="https://icons.iconarchive.com/icons/aha-soft/free-large-boss/512/Admin-icon.png">
+                        <div class="admin-status">
+                            <h6>Admin</h6>
+                            <p><i class="fa-solid fa-globe online"></i>Online</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="notification">
+                    <p>Notifications</p>
+                </div>
+                <div class="adminWork">
+                    <div class="adminres ">
+                        <a>
+                            <i class="fa-solid fa-clipboard-user"></i>
+                            Attendence
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a href="http://localhost:8080/employees">
+                            <i class="fa-solid fa-user"></i>
+                            Employees Section
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a href="http://localhost:8080/employee/salary-search">
+                            <i class="fa-solid fa-money-bill"></i>
+                            Salary Slips
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a href="http://localhost:8080/admin/leaves">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            Leave Management
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a href="http://localhost:8080/admin/payheads">
+                            <i class="fa-brands fa-gratipay"></i>
+                            Pay Heads
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a>
+                            <i class="fa-solid fa-clipboard-list"></i>
+                            List Holidays
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav">
+                <div class="menulogo" onclick="toggleDashboard()">
+                    <i class="fa-solid fa-bars menu-bar"></i>
+                </div>
+                <div class="logout offset-10">
+                    <button class="btn btn-primary logout">Log out</button>
+                </div>
+            </div>
+            <div class="demo"></div>
+        </div>
+    </body>
+    
+    <table class="table table table-bordered ">
+        <thead class="table table table-bordered ">
+          <tr >
+            <th scope="col">#</th>
+            <th scope="col">Head Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Head Type</th>
+          </tr>
+        </thead>
+        <tbody class="table table table-bordered ">
+          <tr>
+            <th scope="row">1</th>
+            <td>Basic Salary</td>
+            <td>Basic Salry</td>
+            <td>Earnings</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>House Rent Allowance</td>
+            <td>House Rent Allowance</td>
+            <td>Deduction</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td >Medical Allowance</td>
+            <td>Medical Allowance</td>
+            <td>Deduction</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td >Travelling Expenses</td>
+            <td>Travelling Expenses</td>
+            <td>Earnings</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td >Other Allowances</td>
+            <td>Other Allowances</td>
+            <td>Earnings</td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td >Professional Tax</td>
+            <td>Professional Tax</td>
+            <td>Deduction</td>
+          </tr>
+        </tbody>
+      </table>
+</body>

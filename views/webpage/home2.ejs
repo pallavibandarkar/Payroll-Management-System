@@ -1,0 +1,61 @@
+<style>
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+        position: relative; 
+    }
+    .main img {
+        position: absolute; 
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover; 
+        z-index: -1; 
+    }
+    .login-card {
+        height: 190px;
+        width: 420px;
+        background-color:white;
+        text-align: center; 
+        
+        padding: 20px; 
+        border-radius: 1%;
+        box-shadow: 0 4px 8px #0F52BA; 
+    }
+    .login-btns {
+        display: flex;
+        justify-content: center; 
+        gap: 10px; 
+        margin-top: 10px; 
+
+    }
+    .login-btns button{
+        background-color: #0F52BA;
+        color: white;
+    }
+    .login-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px #4169E1 ;
+    }
+    
+</style>
+
+<% layout("/layouts/boilerpalte") %>
+<body>
+    <div class="main">
+        <img src="https://vakilsearch.com/blog/wp-content/uploads/2022/10/What-Is-Payroll-Management-System.jpg" 
+        alt="payroll">
+        <div class="login-card">
+            <h4>Payroll Management System</h4>
+            <p><b>Please Login according to your role!</b></p>
+            <div class="login-btns">
+                <a href="http://localhost:8080/employee/login"><button class="btn btn-primary">Login As Employee</button></a>
+                <a href="http://localhost:8080/admin/login"><button class="btn btn-primary">Login As Admin</button></a>
+            </div>
+        </div>
+    </div>
+</body>

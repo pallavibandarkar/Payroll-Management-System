@@ -1,0 +1,231 @@
+<style>
+    .body1{
+        margin-top: 20px;
+    }
+    .punch{
+     margin-left: 550px;
+    }
+    .logout{
+     margin-left: 50px;
+    }
+    .emp_pdetails{
+    margin-top: 40px;
+    margin: auto;
+    }
+    /* .emp-sal{
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    } */
+
+    .salarySlip {
+        width: 70%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+       
+        height: 700px;
+    }
+
+    
+    table {
+        border-collapse: collapse; 
+        width: 100%;
+    }
+
+    th, td {
+        border-width: 2px; 
+        border-style: dashed; 
+        border-color: black; 
+        padding: 8px;
+    }
+
+    th {
+        background-color: #f2f2f2; 
+    }
+    .container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .salary-search{
+        height: 100px;
+        width: 1000px;
+        margin-top: 50px;
+        margin-left: 290px;
+        background-color:whitesmoke;
+        padding: 10px;
+        
+    }
+    .searchbtn{
+        padding: 29px;
+    }
+    .month{
+        padding-left: 70px;
+    }
+    
+</style>
+
+<% layout("/layouts/boilerpalte") %>
+<body>
+    <head>
+            <link rel="stylesheet" href="/css/employeebid.css" >
+    </head>
+    <body>
+        <nav class="sticky-top">
+            <div class="nav_bar">
+                <div class="emp_info">
+                    <div class="emp_photo">
+                          <img src="<%=employee.photo.url %>" class="emp_img">
+                    </div>
+                    <div class="emp_details">
+                            <h5><%=employee.firstname%>&nbsp;&nbsp;<%=employee.lastname%></h5>
+                            <h6><i class="fa-solid fa-globe" style="color: green;"></i>&nbsp;Online</h6>
+                    </div>
+                </div>
+               <div class="nav-links">
+                        <div>
+                            <a href="http://localhost:8080/employee/<%=employee._id%>/salarySlips"><h6><i class="fa-solid fa-money-bill" style="color: black;"></i>&nbsp;Salary Slips</h6></a>
+                        </div>
+                        <div>
+                            <a href="http://localhost:8080/employee/<%=employee._id%>/leaves"><h6><i class="fa-solid fa-arrow-right-from-bracket" style="color: black;"></i>&nbsp;Leaves</h6></a>
+                        </div>
+                        <div>
+                            <h6><i class="fa-solid fa-calendar-days" style="color: black;"></i>&nbsp;Holidays</h6>
+                        </div>
+                    </div>
+                    <div class="punch">
+                        <form action="http://localhost:8080/employee/<%=employee._id%>/puch-in" method="POST">
+                            <button class="btn btn-success">Pucnch-in</button>
+                        </form>
+                        
+                    </div>
+                    <div class="logout">
+                        <form action="http://localhost:8080/employee/<%=employee._id%>/puch-out" method="POST">
+                            <button class="btn btn-success">Punch-out</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            </nav>
+    </body>
+
+    <div class="salary-search">
+        <form 
+           action="/employee/salary-search" 
+           method="POST"  class="needs-validation" novalidate >
+            <div class="row month" offset="3">
+
+                <div class="col-4">
+                    <label for="year" class="form-label"><b>ID:</b></label>
+                    <input name="id" id="id" class="form-control"  placeholder="Enter id" required>
+            
+                </div>
+
+                <div class="col-2">
+                    <label for="month" class="form-label"><b>Month:</b></label>
+                    <select name="month" id="month" class="form-select" required>
+                        <option>Please Make a choice</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                    </select>
+                </div>
+
+                <div class="col-2">
+                    <label for="year" class="form-label"><b>Year:</b></label>
+                    <input name="year" id="year" class="form-control"  placeholder="Enter Year" required>
+            
+                </div>
+                
+               <div class="col-2 searchbtn">
+                <button class="btn btn-success">Search</button>
+               </div>
+            </div>
+        </form>  
+    </div>
+
+
+    <br>
+    <br>
+    <a href="http://localhost:8080/employees">Back to Employee Page</a>
+    <div class="body1">
+        <div class="container">
+        <div class="emp-sal">
+            <h4>Employee Pay Slip for the month of <%=newReport.month%>/<%=newReport.year%></h4>
+            <p>Name: <%=employee.firstname%>&nbsp;<%=employee.lastname%></p>
+            <p>Designation: <%=employee.designation%></p>
+            <p>Bank Name: <%=employee.bankName%></p>
+            <p>Bank A/C No.: <%=employee.bankacno%></p>
+        </div>
+       </div>
+        <div class="container">
+            <div class="salarySlip">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Earnings</th>
+                        <th>Amount</th>
+                        <th>Deductions</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr>
+                        <td>Basic Pay</td>
+                        <td><%=basicsalary%></td>
+                        <td>Mediclaim</td>
+                        <td><%=mediclaim%></td>
+                    </tr> 
+                    <tr>
+                        <td >HRA</td>
+                        <td ><%=hra%></td>
+                        <td >ProfTax</td>
+                        <td ><%=ProfTax %></td>
+                    </tr> 
+                    <tr>
+                        <td >DA</td>
+                        <td ><%=da%></td>
+                        <td >Insurance Premium</td>
+                        <td ><%=insPremium %></td>
+                    </tr>  
+                    <tr>
+                        <td >Transport Allowance</td>
+                        <td ><%=ta%></td>
+                        <td ></td>
+                        <td ></td>
+                    </tr>  
+                    <tr>
+                        <td >Special Allowance</td>
+                        <td><%=spcall%></td>
+                        <td></td>
+                        <td></td>
+                    </tr>  
+                    <tr>
+                        <td style="color: blue;"><b>Gross Earnings</b></td>
+                        <td style="color: blue;"><b><%=newReport.totbasic%></b></td>
+                        <td style="color: blue;"><b>Total Deductions</b></td>
+                        <td style="color: blue;"><b><%=newReport.totded%></b></td>
+                    </tr>  
+                    <tr>
+                        
+                        <td ></td>
+                        <td></td>
+                        <td style="color: blue;"><b>Net Salary</b></td>
+                        <td style="color: blue;"><b><%=newReport.netSalary%></b></td>
+                    </tr>  
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+</body>

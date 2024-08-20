@@ -1,0 +1,230 @@
+<style>
+    .salary-search{
+        height: 100px;
+        width: 1000px;
+        margin-top: 50px;
+        margin-left: 290px;
+        background-color:whitesmoke;
+        padding: 10px;
+        
+    }
+    .searchbtn{
+        padding: 29px;
+    }
+    .month{
+        padding-left: 70px;
+    }
+    .empphoto{
+   height: 50px;
+   width: 50px;
+}
+.emptabel{
+    border: 1px solid #D3D3D3 !important;
+}
+.emptabelinfo{
+    margin: 20px;
+    margin-top: 50px !important;
+}
+
+.empRow{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.mainbtns{
+    display: flex;
+    
+}
+.mainbtns form{
+    margin-right: 3px;
+}
+.mainbtns button{
+    border: none;
+    font-size: 1.5rem;
+    
+}
+a{
+    text-decoration: none;
+}
+</style>
+
+<% layout("/layouts/boilerpalte") %>
+<body>
+    <head>
+        <link rel="stylesheet" href="/css/admin.css">
+    </head>
+    <body>
+        <div class="content ">
+            <div class="dashboard">
+                <div class="dashText">
+                    <p>Payroll Management System</p>
+                </div>
+                <div class="admin">
+                    <div class="admin-info">
+                        <img src="https://icons.iconarchive.com/icons/aha-soft/free-large-boss/512/Admin-icon.png">
+                        <div class="admin-status">
+                            <h6>Admin</h6>
+                            <p><i class="fa-solid fa-globe online"></i>Online</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="notification">
+                    <p>Notifications</p>
+                </div>
+                <div class="adminWork">
+                    <div class="adminres ">
+                        <a>
+                            <i class="fa-solid fa-clipboard-user"></i>
+                            Attendence
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a href="http://localhost:8080/employees">
+                            <i class="fa-solid fa-user"></i>
+                            Employees Section
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a>
+                            <i class="fa-solid fa-money-bill"></i>
+                            Salary Slips
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a href="http://localhost:8080/admin/leaves">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            Leave Management
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a href="http://localhost:8080/admin/payheads">
+                            <i class="fa-brands fa-gratipay"></i>
+                            Pay Heads
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a>
+                            <i class="fa-solid fa-clipboard-list"></i>
+                            List Holidays
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav">
+                <div class="menulogo" onclick="toggleDashboard()">
+                    <i class="fa-solid fa-bars menu-bar"></i>
+                </div>
+                <div class="logout offset-10">
+                    <button class="btn btn-primary logout">Log out</button>
+                </div>
+            </div>
+            <div class="demo"></div>
+        </div>
+    </body>
+
+    <div class="salary-search">
+        <form 
+           action="/employee/salary-search" 
+           method="POST"  class="needs-validation" novalidate >
+            <div class="row month" offset="3">
+
+                <div class="col-4">
+                    <label for="year" class="form-label"><b>ID:</b></label>
+                    <input name="id" id="id" class="form-control"  placeholder="Enter id" required>
+            
+                </div>
+
+                <div class="col-2">
+                    <label for="month" class="form-label"><b>Month:</b></label>
+                    <select name="month" id="month" class="form-select" required>
+                        <option>Please Make a choice</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                    </select>
+                </div>
+
+                <div class="col-2">
+                    <label for="year" class="form-label"><b>Year:</b></label>
+                    <input name="year" id="year" class="form-control"  placeholder="Enter Year" required>
+            
+                </div>
+                
+               <div class="col-2 searchbtn">
+                <button class="btn btn-success">Search</button>
+               </div>
+            </div>
+        </form>  
+    </div>
+
+        <div class="emptabelinfo ">
+            <form method="get" action="http://localhost:8080/newEmployees">
+             <button class="btn btn-success">Add</button>
+            </form>
+             <table class="table table-hover emptabel mt-3">
+             <tr class="emptabel emp1 ">
+                 <td><b>Employee Data</b></td>
+                 <td></td>
+                 <td></td>
+                 <td></td>
+                 <td></td>
+                 <td></td>
+                 <td></td>
+                
+                 
+             </tr>
+             <tr>
+                 <td></td>
+             </tr>
+             
+             <tr>
+                 
+                 <th class="emptabel">ID</th>
+                 <th class="emptabel">Image</th>
+                 <th class="emptabel">Name</th>
+                 <th class="emptabel">Email</th>
+                 <th class="emptabel">Contact</th>
+                 <th class="emptabel">Identity</th>
+                 <th class="emptabel">DOB</th>
+                 <th class="emptabel">Joining Date</th>
+                 <th class="emptabel">Action</th>
+             </tr>
+             
+             <%for(employee of employees){%>
+                 <tr> 
+                  
+                     <td class="emptabel"><a href="http://localhost:8080/employees/<%=employee._id %>"><%=employee._id %></a></td>
+                     <td class="emptabel"><img src="<%=employee.photo.url %>" class="empphoto"></td>
+                     <td class="emptabel"><%=employee.firstname %>&nbsp;&nbsp;<%=employee.lastname %></td>
+                     <td class="emptabel"><%=employee.emailid %></td>
+                     <td class="emptabel"><%=employee.contactno%></td>
+                     <td class="emptabel"><%=employee.identification%>-&nbsp;<%=employee.idnumber%></td>
+                     <td class="emptabel"><%=`${employee.dob.getDate()}-${employee.dob.getMonth()+1}-${employee.dob.getFullYear()}` %></td>
+                     <td class="emptabel"><%=`${employee.doj.getDate()}-${employee.doj.getMonth()+1}-${employee.doj.getFullYear()}` %></td>
+                     
+                         
+                     
+                 
+                 </div>
+                 </tr>
+             <%}%>
+         
+             <tr>
+                 <td></td>
+             </tr>
+             
+             
+         </table>
+         </div>
+
+        </div>
+
+    

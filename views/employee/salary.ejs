@@ -1,0 +1,26 @@
+<% layout("/layouts/boilerpalte") %>
+<body>
+    <table>
+        <tbody>
+            <tr>
+                <th>EmpId</th>
+                <th>Emp Name</th>
+                <th>Salary Month</th>
+                <th>Earnings</th>
+                <th>Deductions</th>
+                <th>Net Salary</th>
+                <th>Actions</th>
+            </tr>
+            <% for(employee of employees){%>
+                <td><%=employee._id%></td>
+                <td><%=employee.firstname%></td>
+                <td><%=newReport.month%></td>
+                <td><%=employee.grossSalry%></td>
+                <td><%=employee.totalDeductions%></td>
+                <td><%=employee.netSalaryCal</td>
+                <td></td>
+            <%}%>
+        </tbody>
+        
+    </table>
+</body>

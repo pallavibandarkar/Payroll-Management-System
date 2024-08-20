@@ -1,0 +1,59 @@
+
+    .nav{
+        height: 40px;
+        background-color: #E1EBEE;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 1000 !important;
+    }
+    .pms{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    .pms h6{
+        margin-left: 10px;
+    }
+    .login{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .login button{
+        margin-right: 20px;
+        border-radius: 1rem;
+        background-color: blue;
+        color: white;
+        
+    }
+    .content-img{
+        height:400px;
+        width: 100%;
+    }
+    .pmsimg img{
+        height:700px;
+        width: 100%;
+        position: relative;
+        display: inline-block;
+    }
+    .overlay-text {
+        position: absolute;
+        top: 17%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+    }
+    .overlay-text h1 {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+    .overlay-text p {
+        font-size: 1.2em;
+        padding: 0;
+        margin: 0;
+        text-shadow: 2px 2px 4px aqua;
+    }
+   
+    

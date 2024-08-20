@@ -1,0 +1,158 @@
+<style>
+    .all_Leaves{
+        
+        margin: 20px;
+        margin-top: 50px;
+    }
+    .leavetable{
+        border: 1px solid #D3D3D3 !important;
+    }
+    .fa-solid{
+        font-size: 32px;
+    }
+    form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .lbtn button i{
+        border:white !important;
+       
+    }
+</style>
+<% layout("./layouts/boilerpalte.ejs") %>
+<body>
+    <head>
+        <link rel="stylesheet" href="/css/admin.css">
+    </head>
+    <body>
+        <div class="content ">
+            <div class="dashboard">
+                <div class="dashText">
+                    <p>Payroll Management System</p>
+                </div>
+                <div class="admin">
+                    <div class="admin-info">
+                        <img src="https://icons.iconarchive.com/icons/aha-soft/free-large-boss/512/Admin-icon.png">
+                        <div class="admin-status">
+                            <h6>Admin</h6>
+                            <p><i class="fa-solid fa-globe online"></i>Online</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="notification">
+                    <p>Notifications</p>
+                </div>
+                <div class="adminWork">
+                    <div class="adminres ">
+                        <a>
+                            <i class="fa-solid fa-clipboard-user"></i>
+                            Attendence
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a href="http://localhost:8080/employees">
+                            <i class="fa-solid fa-user"></i>
+                            Employees Section
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a href="http://localhost:8080/employee/salary-search">
+                            <i class="fa-solid fa-money-bill"></i>
+                            Salary Slips
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a href="http://localhost:8080/admin/leaves">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            Leave Management
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a href="http://localhost:8080/admin/payheads">
+                            <i class="fa-brands fa-gratipay"></i>
+                            Pay Heads
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a >
+                            <i class="fa-solid fa-clipboard-list"></i>
+                            List Holidays
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav">
+                <div class="menulogo" onclick="toggleDashboard()">
+                    <i class="fa-solid fa-bars menu-bar"></i>
+                </div>
+                <div class="logout offset-10">
+                    <button class="btn btn-primary logout">Log out</button>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+
+    <div class="all_Leaves">
+        <h3>All Leaves</h3>
+        <table class="table table-hover leavetable">
+            <thead >
+                <tr>
+                    <th class="leavetable">ID</th>
+                    <th class="leavetable">Name</th>
+                    <th class="leavetable">Subject</th>
+                    <th class="leavetable">From </th>
+                    <th class="leavetable">To</th>
+                    <th class="leavetable">LeaveType</th>
+                    <th class="leavetable">Message</th>
+                    <th class="leavetable">Status</th>
+                    <th class="leavetable">Action</th>
+                </tr>
+                
+            </thead>
+            <tbody >
+                
+            <% for(leave of leaves){%>
+                <tr>
+                    <td class="leavetable"><%=leave.empid%></td>
+                    <td class="leavetable"><%=leave.empfname%>&nbsp;&nbsp;<%=leave.emplname%></td>
+                    <td class="leavetable"><%=leave.subject%></td>
+                    <td class="leavetable"><%=`${leave.leavesfrom.getDate()}/${leave.leavesfrom.getMonth()+1}/${leave.leavesfrom.getFullYear()}` %></td>
+                    <td class="leavetable"><%=`${leave.leavesto.getDate()}/${leave.leavesto.getMonth()+1}/${leave.leavesto.getFullYear()}` %></td>
+                    <td class="leavetable"><%=leave.leavetype%></td>
+                    <td class="leavetable"><%=leave.leavemsg%></td>
+                    <td class="leavetable">
+                        <% if(leave.status == "Approved"){%>
+                            <button style="background-color: green;" class="btn">
+                                <b><%=leave.status%></b>
+                            </button>
+                        <%}else if(leave.status == "Rejected"){%>
+                            <button style="background-color:red;" class="btn">
+                                <b><%=leave.status%></b>
+                            </button>
+                        <%} else {%>
+                            <button style="background-color:gold;" class="btn">
+                                <b><%=leave.status%></b>
+                            </button>
+                        <%}%>
+
+                        
+                        
+                    </td>
+                    <td class="leavetable">
+                        <form method="POST" action="http://localhost:8080/admin/leavesA/<%=leave._id%>?_method=PUT" class="lbtn">
+                            <button><i class="fa-solid fa-square-check" style="color: green;"></i></button>
+                        </form>
+                        <form method="POST" action="http://localhost:8080/admin/leavesR/<%=leave._id%>?_method=PUT" class="lbtn">
+                            <button><i class="fa-solid fa-square-xmark" style="color: red;"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                
+            <%}%>
+            </tbody>
+        </table>
+    </div>
+</body>

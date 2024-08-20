@@ -1,0 +1,164 @@
+<style>
+.leave{
+    display: flex;
+    background-color:whitesmoke;
+}
+.leaveapp{
+    height: 650px;
+    width: 30%;
+    margin-top: 20px;
+    margin-left: 20px;
+    background-color:white;
+    border-radius: 3%;
+}
+h4{
+    margin: 20px;
+}
+.myLeaves{
+    margin-left: 30px;
+    margin-top: 20px;
+    width: 60%;
+}
+.leavetable{
+    border: 1px solid #D3D3D3 !important;
+}
+
+</style>
+<% layout("./layouts/boilerpalte.ejs") %>
+<body>
+    <head>
+        <link rel="stylesheet" href="/css/employeebid.css" >
+    </head>
+    <body>
+        <nav class="sticky-top">
+            <div class="nav_bar">
+                <div class="emp_info">
+                    <div class="emp_photo">
+                      <img src="<%=employee.photo.url %>" class="emp_img">
+                    </div>
+                    <div class="emp_details">
+                        <h5><%=employee.firstname%>&nbsp;&nbsp;<%=employee.lastname%></h5>
+                        <h6><i class="fa-solid fa-globe" style="color: green;"></i>&nbsp;Online</h6>
+                    </div>
+                </div>
+                <div class="nav-links">
+                    <div>
+                        <a href="http://localhost:8080/employee/<%=employee._id%>/salarySlips">
+                            <h6><i class="fa-solid fa-money-bill" style="color: black;"></i>&nbsp;Salary Slips</h6>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="http://localhost:8080/employee/<%=employee._id%>/leaves"><h6><i class="fa-solid fa-arrow-right-from-bracket" style="color: black;"></i>&nbsp;Leaves</h6></a>
+                    </div>
+                    <div>
+                        <h6><i class="fa-solid fa-calendar-days" style="color: black;"></i>&nbsp;Holidays</h6>
+                    </div>
+                </div>
+                <div class="nav-logout">
+                    <button class="btn btn-primary">Log out</button>
+                </div>
+            </div>
+        </nav>
+    </body>
+
+    <h1>Leaves</h1>
+    <div class="leave">
+        
+        <div class="leaveapp">
+            <h4>Apply for Leave</h4>
+            <form action="/employee/<%=employee._id%>/leaves" method="POST">
+                <div class="offset-1 mb-3 col-8">
+                    <label for="subject"  class="form-label"><b>Leave Subject</b></label>
+                    <input class="form-control" name="leave[subject]" id="subject" type="text">  
+                </div>
+    
+                <div class="offset-1 mb-3 col-8">
+                    <label for="leavesfrom"  class="form-label"><b>Leave From</b></label>
+                    <input class="form-control" name="leave[leavesfrom]" id="leavesfrom" type="date">
+                </div>
+    
+                <div class="offset-1 mb-3 col-8">
+                    <label for="leavesto"  class="form-label"><b>Leave to</b></label>
+                    <input class="form-control" name="leave[leavesto]" id="leavesto" type="date">
+                </div>
+                <div class="offset-1 mb-3 col-8">
+                    <label for="leaveDays"  class="form-label"><b>Leave Days</b></label>
+                    <input class="form-control" name="leave[leaveDays]" id="leaveDays" type="Number">
+                </div>
+    
+                <div class="offset-1 mb-3 col-8">
+                    <label for="leavetype"  class="form-label"><b>Leave Type</b></label>
+                    
+                    <select name="leave[leavetype]" class="form-select" id="leavetype" required>
+                        <option>Please Make a choice</option>
+                        <option>Casual Leave</option>
+                        <option>Sick Leave</option>
+                        <option>Earned Leave</option>
+                        <option>Annual Leave</option>
+                    </select>
+                    
+                </div>
+    
+                <div class="offset-1 mb-3 col-8">
+                    <label for="leavemsg"  class="form-label"><b>Leave Message</b></label>
+                    <textarea class="form-control" name="leave[leavemsg]" id="leavemsg" 
+                              rows="7"  type="text"></textarea>
+                    
+                </div>
+
+                <button class="btn btn-primary mb-3 offset-1 ">Apply For Leave</button>
+            </form>
+          
+            
+        </div>
+
+        <div class="myLeaves">
+            <table class="table table-hover leavetable">
+                <thead >
+                    <tr>
+                       
+                        <th class="leavetable">Subject</th>
+                        <th class="leavetable" >From</th>
+                        <th class="leavetable" >To </th>
+                        <th class="leavetable">Days</th>
+                        <th class="leavetable">Type</th>
+                        <th class="leavetable">Message</th>
+                        <th class="leavetable">Status</th>
+                    </tr>
+                    
+                </thead>
+                <tbody >
+                <% for(leave of leaves){%>
+                    <tr>
+                        <td class="leavetable"><%=leave.subject%></td>
+                        <td class="leavetable"><%=`${leave.leavesfrom.getDate()}/${leave.leavesfrom.getMonth()+1}/${leave.leavesfrom.getFullYear()}` %></td>
+                        <td class="leavetable"><%=`${leave.leavesto.getDate()}/${leave.leavesto.getMonth()+1}/${leave.leavesto.getFullYear()}` %></td>
+                        <td class="leavetable"><%=leave.leaveDays%></td>
+                        <td class="leavetable"><%=leave.leavetype%></td>
+                        <td class="leavetable"><%=leave.leavemsg%></td>
+                        
+                        <td class="leavetable">
+                            <% if(leave.status == "Approved"){%>
+                                <button style="background-color: green;" class="btn">
+                                    <b><%=leave.status%></b>
+                                </button>
+                            <%}else if(leave.status == "Rejected"){%>
+                                <button style="background-color:red;" class="btn">
+                                    <b><%=leave.status%></b>
+                                </button>
+                            <%} else {%>
+                                <button style="background-color:gold;" class="btn">
+                                    <b><%=leave.status%></b>
+                                </button>
+                            <%}%>
+                        </td>
+                    </tr>
+                    
+                <%}%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+</body>

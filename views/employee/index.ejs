@@ -1,0 +1,215 @@
+
+<style>
+.index{
+    margin: 30px;
+    border: 1px solid gray;
+    padding: 20px;
+}
+.empimgindex{
+    height: 150px;
+    width: 150px;
+}
+.Photograph{
+    flex-wrap: wrap;
+    display: flex;
+}
+.empbtn{
+   
+   display: flex;
+   margin-right: 60px;
+   
+  
+}
+.btn{
+    height: 30px;
+    width: 60px ;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 5px !important;
+}
+</style>
+<% layout("/layouts/boilerpalte") %>
+<body>
+    <head>
+        <link rel="stylesheet" href="/css/admin.css">
+    </head>
+    <body>
+        <div class="content ">
+            <div class="dashboard">
+                <div class="dashText">
+                    <p>Payroll Management System</p>
+                </div>
+                <div class="admin">
+                    <div class="admin-info">
+                        <img src="https://icons.iconarchive.com/icons/aha-soft/free-large-boss/512/Admin-icon.png">
+                        <div class="admin-status">
+                            <h6>Admin</h6>
+                            <p><i class="fa-solid fa-globe online"></i>Online</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="notification">
+                    <p>Notifications</p>
+                </div>
+                <div class="adminWork">
+                    <div class="adminres ">
+                        <a>
+                            <i class="fa-solid fa-clipboard-user"></i>
+                            Attendence
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a href="http://localhost:8080/employees">
+                            <i class="fa-solid fa-user"></i>
+                            Employees Section
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a href="http://localhost:8080/employee/salary-search">
+                            <i class="fa-solid fa-money-bill"></i>
+                            Salary Slips
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a href="http://localhost:8080/admin/leaves">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            Leave Management
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a href="http://localhost:8080/admin/payheads">
+                            <i class="fa-brands fa-gratipay"></i>
+                            Pay Heads
+                        </a>
+                    </div>
+                    <div class="adminres ">
+                        <a>
+                            <i class="fa-solid fa-clipboard-list"></i>
+                            List Holidays
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav">
+                <div class="menulogo" onclick="toggleDashboard()">
+                    <i class="fa-solid fa-bars menu-bar"></i>
+                </div>
+                <div class="logout offset-10">
+                    <button class="btn btn-primary logout">Log out</button>
+                </div>
+            </div>
+            <div class="demo"></div>
+        </div>
+    </body>
+    
+    <div class="index">
+        
+            <h2>Employee Information</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><b>Fullname</b></td>
+                        <td><%=employee.firstname%>&nbsp;<%=employee.lastname%></td>
+                        
+                        <td><b></b></td>
+                        <td><b></b></td>
+                        <td><b></b></td>
+                    </tr>
+                    <tr>
+                        <td><b>DOB</b></td>
+                        <td><%=employee.dob%></td>
+                    </tr>
+                    <tr>
+                        <td><b>Gender</b></td>
+                        <td><%=employee.gender%></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><b>Address</b></td>
+                        <td><%=employee.address%></td>
+                    </tr>
+                    <tr>
+                        <td><b>City</b></td>
+                        <td><%=employee.city%></td>
+                    </tr>
+                    <tr>
+                        <td><b>State</b></td>
+                        <td><%=employee.state%></td>
+                    </tr>
+                    <tr>
+                        <td><b>Country</b></td>
+                        <td><%=employee.country%></td>
+                    </tr>
+                    <tr>
+                        <td><b>Email Id</td>
+                        <td><%=employee.emailid%></td>
+                    </tr>
+                    <tr>
+                        <td><b>Mobile No.</td>
+                        <td><%=employee.contactno%></td>
+                    </tr>
+                    <tr>
+                        <td><b>Identification  </td>
+                        <td><%=employee.identification%></td>
+                    </tr>
+                    <tr>
+                        <td><b>Id Number </td>
+                        <td><%=employee.idnumber%></td>
+                    </tr>
+                    <tr>
+                        <td><b>Date Of Joining&nbsp;&nbsp;</td>
+                        <td><%=employee.doj%></td>
+                    </tr>
+                    <tr>
+                        <td><b>Grade</td>
+                        <td><%=employee.grade%></td>
+                    </tr>
+                </tbody>
+                
+            </table>
+            
+            
+    <div>
+            
+            
+            
+            
+        
+        <div>
+            <p class="Photograph"><b>Photograph</b> &nbsp;&nbsp;&nbsp;&nbsp;<img class="empimgindex" src="<%=employee.photo.url%>"></p>
+        </div>
+       <hr>
+        
+    </div>
+
+    
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-V7YcJnI2Jq+5GnD9U13U01KS15V9I4Ug2twj3Bh/Z9nFT9KpkRzp+0iMy2rU5SgI" 
+            crossorigin="anonymous"></script>
+
+            <script>
+                // Example starter JavaScript for disabling form submissions if there are invalid fields
+              (() => {
+                'use strict'
+              
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                const forms = document.querySelectorAll('.needs-validation')
+              
+                // Loop over them and prevent submission
+                Array.from(forms).forEach(form => {
+                  form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                      event.preventDefault()
+                      event.stopPropagation()
+                    }
+              
+                    form.classList.add('was-validated')
+                  }, false)
+                })
+              })()
+              </script>
+</body>
